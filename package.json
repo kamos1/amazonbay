@@ -1,0 +1,28 @@
+{
+  "name": "amazonbay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamos1/amazonbay.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kamos1/amazonbay/issues"
+  },
+  "homepage": "https://github.com/kamos1/amazonbay#readme",
+  "devDependencies": {
+    "body-parser": "^1.17.2",
+    "chai": "^4.1.0",
+    "chai-http": "^3.0.0",
+    "express": "^4.15.3",
+    "mocha": "^3.4.2",
+    "nodemon": "^1.11.0"
+  }
+}
