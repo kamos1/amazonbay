@@ -11,7 +11,7 @@ const appendInventory = (items) => {
 
 const appendItemToCart = (title, price) => {
   $('#cart').append(`
-    <div class="cart-item"> 
+    <div data-item-id=${Date.now()} class="cart-item"> 
       <p class="title">${title}</p>
       <p class="price">${price}</p>
     </div>`)
