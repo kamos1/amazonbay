@@ -50,7 +50,6 @@ describe('API Routes', () => {
       chai.request(server)
       .get('/api/v1/inventory')
       .end((error, response) => {
-        console.log(response.body)
         response.should.have.status(200);
         response.should.be.json;
         response.should.be.a('object');
