@@ -29,3 +29,34 @@ describe('Client Routes', () => {
     });
   });
 });
+
+describe('API Routes', () => {
+  before((done) => {
+    knex.migrate.latest()
+    .then(() => {
+      done();
+    });
+  });
+
+  beforeEach((done) => {
+    knex.seed.run()
+    .then(() => {
+      done();
+    });
+  });
+
+  describe('GET /api/v1/inventory', () => {
+    it('should return all items', (done) => {
+      chai.request(server)
+      .get('/api/v1/inventory')
+      .end((error, response) => {
+        console.log(response.body)
+        response.should.have.status(200);
+        response.should.be.json;
+        response.should.be.a('object');
+        response.body.length.should.equal(3);
+        done();
+      });
+    });
+  });
+});
