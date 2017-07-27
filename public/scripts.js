@@ -31,7 +31,6 @@ const appendToOrderHistory = (cartTotal, id) => {
     `)
 }
 
-
 const getInventory = (cartTotal) => {
   fetch('/api/v1/inventory')
   .then(response => response.json())
@@ -75,7 +74,6 @@ $('#inventory').on('click', '#addToCart', function() {
 $('#cart').on('click', '#purchase-btn', function() {
   const totalEl = $(this).parent().find('#cart-total')[0]
   const value = $(totalEl).find('#cart-total-value')[0].innerHTML;
-  console.log(value)
   addOrder(value)
 })
 
