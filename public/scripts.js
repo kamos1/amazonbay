@@ -57,7 +57,6 @@ const addOrder = (amount) => {
   .catch(error => console.error(error))
 }
 
-
 $(document).ready(() => {
   getInventory();
 })
@@ -71,7 +70,14 @@ $('#inventory').on('click', '#addToCart', function() {
   let value = parseInt($(totalEl).find('#cart-total-value')[0].innerHTML) + price;
   appendItemToCart(title, price);
   $(totalEl).find('#cart-total-value')[0].innerHTML = value;
-  addOrder(value)
-  appendToOrderHistory(value)
 })
+
+$('#cart').on('click', '#purchase-btn', function() {
+  const totalEl = $(this).parent().find('#cart-total')[0]
+  const value = $(totalEl).find('#cart-total-value')[0].innerHTML;
+  console.log(value)
+  addOrder(value)
+})
+
+
 
