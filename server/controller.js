@@ -23,5 +23,6 @@ const addOrder = (request, response) => {
 
 
 module.exports = {
-  getInventory
+  getInventory,
+  addOrder
 };
