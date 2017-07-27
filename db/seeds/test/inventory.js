@@ -1,6 +1,7 @@
 
 exports.seed = function(knex, Promise) {
-  return knex('inventory').del()
+  return return knex('orders').del()
+  .then(() => knex('inventory').del())
     .then(function () {
       return knex('inventory').insert([
         {id: 1, title: 'toothbrush', description: 'Toothbrush improves oral health', image: 'http://images.gumbrand.com/media/catalog/product/cache/1/image/600x600/9df78eab33525d08d6e5fb8d27136e95/4/3/430_us_r_1ct_12-14.png', price: 2.00},
