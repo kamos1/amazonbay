@@ -17,8 +17,21 @@ const appendItemToCart = (title, price) => {
     </div>`)
 }
 
+const appendToOrderHistory = (cartTotal, id) => {
+  const today = new Date($.now())
+  const day = today.getDate()
+  const month = today.getMonth()+1
+  const year = today.getFullYear()
 
-const getInventory = () => {
+  $('#order-history').append(`
+    <div data-id=${id} class="order-item">
+      <p>Order total: ${cartTotal}</p>
+      <p>Purchase date: ${day}/${month}/${year}</p>
+    </div>
+    `)
+}
+
+const getInventory = (cartTotal) => {
   fetch('/api/v1/inventory')
   .then(response => response.json())
   .then((inventory) => {
@@ -34,11 +47,14 @@ const addOrder = (amount) => {
     body: JSON.stringify({
       total: amount
     }),
-    headers: { 'Content-Type': 'application/json' }
+    headers: { 'Content-Type': 'application/json' },
   })
-
+  .then(res => res.json())
+  .then((obj) => {
+    appendToOrderHistory(amount, obj.id)
+  })
+  .catch(error => console.error(error))
 }
-
 
 $(document).ready(() => {
   getInventory();
@@ -53,6 +69,13 @@ $('#inventory').on('click', '#addToCart', function() {
   let value = parseInt($(totalEl).find('#cart-total-value')[0].innerHTML) + price;
   appendItemToCart(title, price);
   $(totalEl).find('#cart-total-value')[0].innerHTML = value;
+})
+
+$('#cart').on('click', '#purchase-btn', function() {
+  const totalEl = $(this).parent().find('#cart-total')[0]
+  const value = $(totalEl).find('#cart-total-value')[0].innerHTML;
   addOrder(value)
 })
+
+
 
