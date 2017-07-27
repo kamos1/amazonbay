@@ -35,7 +35,11 @@ $(document).ready(() => {
 
 $('#inventory').on('click', '#addToCart', function() {
   const card = $(this).parent().children()
+  const cart = $(this).parent().parent().parent().children()[2];
   const title = card[0].innerHTML;
   const price = parseInt(card[3].innerHTML);
-  appendItemToCart(title, price)
+  const totalEl = $(cart).find('#cart-total')[0]
+  let value = parseInt($(totalEl).find('#cart-total-value')[0].innerHTML) + price;
+  appendItemToCart(title, price);
+  $(totalEl).find('#cart-total-value')[0].innerHTML = value;
 })
