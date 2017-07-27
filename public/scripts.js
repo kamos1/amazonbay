@@ -9,7 +9,7 @@ const appendInventory = (items) => {
     </div>`)
 }
 
-const appendItemToCart = (title, price, data) => {
+const appendItemToCart = (title, price) => {
   const id = Date.now();
   const item = `
     <div data-item-id=${id} class="cart-item"> 
@@ -17,8 +17,12 @@ const appendItemToCart = (title, price, data) => {
       <p class="price">${price}</p>
     </div>`;
 
-  $('#cart').append(`${item || data}`)
+  $('#cart').append(`${item}`)
   addToLocalStorage(id, item)
+}
+
+const createItem = () => {
+
 }
 
 const appendToOrderHistory = (cartTotal, id) => {
@@ -64,10 +68,17 @@ const addToLocalStorage = (id, item) => {
   localStorage.setItem(id, JSON.stringify(item));
 }
 
+const retrieveLocalStorage = () => {
+  for(let key in localStorage) {
+    const data = JSON.parse(localStorage[key])
+    $('#cart').append(`${data}`)
+  }
+}
 
 
 $(document).ready(() => {
   getInventory();
+  retrieveLocalStorage();
 })
 
 $('#inventory').on('click', '#addToCart', function() {
@@ -86,7 +97,6 @@ $('#cart').on('click', '#purchase-btn', function() {
   const value = $(totalEl).find('#cart-total-value')[0].innerHTML;
   addOrder(value)
 })
-
 
 $('.order-btn').on('click', function() {
   const orderHistory = $(this).parent().find('#order-history');
