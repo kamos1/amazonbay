@@ -64,7 +64,7 @@ $(document).ready(() => {
 
 $('#inventory').on('click', '#addToCart', function() {
   const card = $(this).parent().children()
-  const cart = $(this).parent().parent().parent().children()[2];
+  const cart = $(this).parent().parent().parent().children()[3];
   const title = card[0].innerHTML;
   const price = parseInt(card[3].innerHTML);
   const totalEl = $(cart).find('#cart-total')[0]
@@ -90,6 +90,5 @@ $('.cart-btn').on('click', function() {
   $(cart).toggleClass('hide').toggle();
 });
 
-// $('.close-order').on()
 
 
