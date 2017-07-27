@@ -1,4 +1,4 @@
-const appendItem = (items) => {
+const appendInventory = (items) => {
   $('#inventory').append(`
     <div class="card">
       <p class="card-text title">${items.title}</p>
@@ -9,12 +9,21 @@ const appendItem = (items) => {
     </div>`)
 }
 
+const appendItemToCart = (title, price) => {
+  $('#cart').append(`
+    <div class="cart-item"> 
+      <p class="title">${title}</p>
+      <p class="price">${price}</p>
+    </div>`)
+}
+
+
 const getInventory = () => {
   fetch('/api/v1/inventory')
   .then(response => response.json())
   .then((inventory) => {
     if (inventory.length) {
-      inventory.map(items => appendItem(items));
+      inventory.map(items => appendInventory(items));
     }
   });
 };
@@ -22,4 +31,11 @@ const getInventory = () => {
 
 $(document).ready(() => {
   getInventory();
+})
+
+$('#inventory').on('click', '#addToCart', function() {
+  const card = $(this).parent().children()
+  const title = card[0].innerHTML;
+  const price = parseInt(card[3].innerHTML);
+  appendItemToCart(title, price)
 })
