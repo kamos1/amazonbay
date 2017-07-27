@@ -13,10 +13,13 @@ const getInventory = (request, response) => {
 };
 
 const addOrder = (request, response) => {
-  const total = request.body;
+  const order = request.body.total;
 
-  database('orders').insert(total, 'id')
-  .then(total => response.status(201).json({id: link[0]}))
+  database('orders').insert({total: order}, 'total')
+  .then(total => {
+    console.log('controller', total)
+    response.status(201).json({total: total[0]})
+  })
   .catch(error => response.status(500).json({ error }))
 }
 

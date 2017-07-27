@@ -1,6 +1,6 @@
 
 exports.seed = function(knex, Promise) {
-  return return knex('orders').del()
+  return knex('orders').del()
   .then(() => knex('inventory').del())
     .then(function () {
       return knex('inventory').insert([

@@ -58,4 +58,21 @@ describe('API Routes', () => {
       });
     });
   });
+
+  describe('POST /api/v1/order', () => {
+    it('should add an order', (done) => {
+      chai.request(server)
+      .post('/api/v1/order')
+      .send({
+        total: 64
+      })
+      .end((error, response) => {
+        response.should.have.status(201);
+        response.body.should.be.a('object');
+        response.body.should.have.property('total');
+        response.body.total.should.equal('64.00');
+        done();
+      })
+    })
+  })
 });
