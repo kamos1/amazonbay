@@ -1,0 +1,37 @@
+body {
+  font-family: sans-serif;
+  background: #BDD5EA;
+  color: #F7F7FF;
+  width: 100%;
+  height: 100%;
+}
+
+.hide {
+  display: hide;
+}
+
+#inventory {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 29%;
+  max-height: 30%;
+  background: #F7F7FF;
+  margin: 20px;
+  border-radius: 20px;
+  text-align: center
+}
+
+.card-text {
+  color: #495867;
+}
+
+.card-btn {
+  border: none;
+  background: #577399;
+  margin: 20px;
+}

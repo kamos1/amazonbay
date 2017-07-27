@@ -3,15 +3,15 @@ const appendInventory = (items) => {
     <div class="card">
       <p class="card-text title">${items.title}</p>
       <p class="card-text description">${items.description}</p>
-      <a class="card-text image" href="${items.image}"> picture of ${items.title}</a>
+      <a class="image-link" href="${items.image}"> picture of ${items.title}</a>
       <p class="card-text title">${items.price}</p>
-      <button id="addToCart">Add to cart</button>
+      <button id="addToCart" class="card-btn">Add to cart</button>
     </div>`)
 }
 
 const appendItemToCart = (title, price) => {
   $('#cart').append(`
-    <div class="cart-item"> 
+    <div data-item-id=${Date.now()} class="cart-item"> 
       <p class="title">${title}</p>
       <p class="price">${price}</p>
     </div>`)
@@ -56,6 +56,8 @@ const addOrder = (amount) => {
   .catch(error => console.error(error))
 }
 
+
+
 $(document).ready(() => {
   getInventory();
 })
@@ -77,5 +79,17 @@ $('#cart').on('click', '#purchase-btn', function() {
   addOrder(value)
 })
 
+
+$('.order-btn').on('click', function() {
+  const orderHistory = $(this).parent().find('#order-history');
+  $(orderHistory).toggleClass('hide').toggle();
+});
+
+$('.cart-btn').on('click', function() {
+  const cart = $(this).parent().find('#cart');
+  $(cart).toggleClass('hide').toggle();
+});
+
+// $('.close-order').on()
 
 
