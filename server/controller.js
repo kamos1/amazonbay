@@ -17,7 +17,8 @@ const addOrder = (request, response) => {
 
   database('orders').insert({total: order}, 'id')
   .then(total => {
-    console.log('controller', total)
+    console.log('controller', total[0])
+    const id = total[0]
     response.status(201).json({id: total[0]})
   })
   .catch(error => response.status(500).json({ error }))
