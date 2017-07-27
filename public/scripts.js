@@ -28,6 +28,17 @@ const getInventory = () => {
   });
 };
 
+const addOrder = (amount) => {
+  fetch('/api/v1/order', {
+    method: 'POST',
+    body: JSON.stringify({
+      total: amount
+    }),
+    headers: { 'Content-Type': 'application/json' }
+  })
+
+}
+
 
 $(document).ready(() => {
   getInventory();
@@ -42,4 +53,6 @@ $('#inventory').on('click', '#addToCart', function() {
   let value = parseInt($(totalEl).find('#cart-total-value')[0].innerHTML) + price;
   appendItemToCart(title, price);
   $(totalEl).find('#cart-total-value')[0].innerHTML = value;
+  addOrder(value)
 })
+
