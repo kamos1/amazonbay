@@ -9,12 +9,12 @@ const appendInventory = (items) => {
     </div>`)
 }
 
-const appendCart = (item) => {
+const appendItemToCart = (title, price) => {
   $('#cart').append(`
     <div class="cart-item"> 
-      item
-    </div>
-    `)
+      <p class="title">${title}</p>
+      <p class="price">${price}</p>
+    </div>`)
 }
 
 
@@ -37,4 +37,5 @@ $('#inventory').on('click', '#addToCart', function() {
   const card = $(this).parent().children()
   const title = card[0].innerHTML;
   const price = parseInt(card[3].innerHTML);
+  appendItemToCart(title, price)
 })
