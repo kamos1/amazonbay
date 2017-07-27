@@ -9,8 +9,16 @@ const getInventory = (request, response) => {
       response.status(404).json({error: 'nothing was found in the inventory'});
     }
   })
-  .catch(error => response.status(500).json({error}));
+  .catch(error => response.status(500).json({ error }));
 };
+
+const addOrder = (request, response) => {
+  const total = request.body;
+
+  database('orders').insert(total, 'id')
+  .then(total => response.status(201).json({id: link[0]}))
+  .catch(error => response.status(500).json({ error }))
+}
 
 
 
