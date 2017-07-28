@@ -23,9 +23,7 @@ const addOrder = (request, response) => {
   .catch(error => response.status(500).json({ error }))
 }
 
-
-
 module.exports = {
   getInventory,
-  addOrder
+  addOrder,
 };
