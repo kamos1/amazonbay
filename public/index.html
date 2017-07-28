@@ -7,18 +7,24 @@
   <title>AmazonBay</title>
 </head>
 <body>
-  <header>
+  <header id="title">
     <h1>AmazonBay</h1>
   </header>
   <section id="main">
-    <button class="order-btn">Order History</button>
-    <article id="order-history"></article>
+    <section id="menus">
+      <div id="order-menu">
+        <button class="card-btn order-btn">Order History</button>
+        <article id="order-history"></article>
+      </div>
+      <div id="cart-menu">
+        <button class="card-btn cart-btn">Cart</button>
+        <article id="cart">
+          <p id="cart-total">total: <span id="cart-total-value">0</span></p>
+          <button class="card-btn" id="purchase-btn">Make Purchase</button>
+        </article>
+      </div>
+    </section>
 
-    <button class="cart-btn">Cart</button>
-    <article id="cart">
-      <p id="cart-total">total: <span id="cart-total-value">0</span></p>
-      <button id="purchase-btn">Make Purchase</button>
-    </article>
     <article id="inventory"></article>
   </section>
 

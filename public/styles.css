@@ -6,6 +6,18 @@ body {
   height: 100%;
 }
 
+#title {
+  text-align: center;
+}
+
+#main {
+  display: flex;
+}
+
+#menu {
+  width: 20%;
+}
+
 .hide {
   display: hide;
 }
@@ -18,10 +30,10 @@ body {
 }
 
 .card {
-  width: 29%;
+  width: 50%;
   max-height: 30%;
   background: #F7F7FF;
-  margin: 20px;
+  margin: 0 20px 20px 20px;
   border-radius: 20px;
   text-align: center
 }
@@ -34,4 +46,17 @@ body {
   border: none;
   background: #577399;
   margin: 20px;
+  color: #F7F7FF;
+}
+
+#cart-menu {
+  text-align: center;
+}
+
+#cart-total {
+  text-align: center;
+}
+
+.cart-item {
+  text-align: center;
 }
