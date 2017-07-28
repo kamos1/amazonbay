@@ -59,6 +59,19 @@ describe('API Routes', () => {
     });
   });
 
+  describe('GET /api/v1/order', () => {
+    it('should return all items', (done) => {
+      chai.request(server)
+      .get('/api/v1/inventory')
+      .end((error, response) => {
+        response.should.have.status(200);
+        response.should.be.json;
+        response.should.be.a('object');
+        done();
+      });
+    });
+  });
+
   describe('POST /api/v1/order', () => {
     it('should add an order', (done) => {
       chai.request(server)
@@ -69,8 +82,8 @@ describe('API Routes', () => {
       .end((error, response) => {
         response.should.have.status(201);
         response.body.should.be.a('object');
-        response.body.should.have.property('total');
-        response.body.total.should.equal('64.00');
+        response.body.should.have.property('id');
+        response.body.id.should.equal(1);
         done();
       })
     })
