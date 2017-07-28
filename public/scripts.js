@@ -14,7 +14,7 @@ const appendItemToCart = (title, price) => {
   const item = `
     <div data-item-id=${id} class="cart-item"> 
       <p class="title">${title}</p>
-      <p class="price">${price}</p>
+      <p class="price">$${price}.00</p>
     </div>`;
 
   $('#cart').append(`${item}`)
@@ -45,6 +45,17 @@ const getInventory = (cartTotal) => {
   });
 };
 
+const getOrder = () => {
+  fetch('/api/v1/order')
+  .then(response => response.json())
+  .then((order) => {
+    console.log(order)
+    if (inventory.length) {
+      inventory.map(items => appendInventory(items));
+    }
+  });
+};
+
 const addOrder = (amount) => {
   fetch('/api/v1/order', {
     method: 'POST',
@@ -56,7 +67,6 @@ const addOrder = (amount) => {
   .then(res => res.json())
   .then((obj) => {
     appendToOrderHistory(amount, obj.id)
-    orderId = obj.id
   })
   .catch(error => console.error(error))
 }
@@ -72,9 +82,13 @@ const retrieveLocalStorage = () => {
   }
 }
 
+
+
+
 $(document).ready(() => {
   getInventory();
   retrieveLocalStorage();
+  getOrder();
 })
 
 $('#inventory').on('click', '#addToCart', function() {

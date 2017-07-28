@@ -23,7 +23,20 @@ const addOrder = (request, response) => {
   .catch(error => response.status(500).json({ error }))
 }
 
+const getOrder = (request, response) => {
+  database('orders').select()
+  .then((order) => {
+    if(order.length) {
+      response.status(200).json(order);
+    } else {
+      response.status(404).json({error:`Could not find folder with id of ${request.params.id}`});
+    }
+  })
+  .catch( error => response.status(500).json({error}))
+}
+
 module.exports = {
   getInventory,
   addOrder,
+  getOrder
 };
