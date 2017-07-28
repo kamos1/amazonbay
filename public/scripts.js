@@ -87,10 +87,7 @@ const appendOrder = (item) => {
     <p>Order Total: ${item.total}</p>
     <p>Order Date: ${item.created_at}</p>
     </div>`)
-}
-
-
-
+}r
 
 $(document).ready(() => {
   getInventory();
