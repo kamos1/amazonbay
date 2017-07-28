@@ -4,7 +4,7 @@ const appendInventory = (items) => {
       <p class="card-text title">${items.title}</p>
       <p class="card-text description">${items.description}</p>
       <a class="image-link" href="${items.image}"> picture of ${items.title}</a>
-      <p class="card-text title">${items.price}</p>
+      <p class="card-text title">$${items.price}</p>
       <button id="addToCart" class="card-btn">Add to cart</button>
     </div>`)
 }
