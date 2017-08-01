@@ -49,8 +49,14 @@ const getOrder = () => {
   fetch('/api/v1/order')
   .then(response => response.json())
   .then((order) => {
+<<<<<<< HEAD
     if (order.length) {
       order.map(items => appendOrder(items));
+=======
+    console.log(order)
+    if (inventory.length) {
+      inventory.map(items => appendInventory(items));
+>>>>>>> master
     }
   });
 };
