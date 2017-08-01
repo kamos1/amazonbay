@@ -115,6 +115,8 @@ $('#cart').on('click', '#purchase-btn', function() {
   const item = $(cartEl).find('.cart-item');
   addOrder(value);
   item.detach();
+  $(totalEl).find('#cart-total-value')[0].innerHTML = 0;
+
 })
 
 $('.order-btn').on('click', function() {
