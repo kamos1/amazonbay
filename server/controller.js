@@ -13,12 +13,17 @@ const getInventory = (request, response) => {
 };
 
 const addOrder = (request, response) => {
-  const order = request.body.total;
+  const order = request.body
 
-  database('orders').insert({total: order}, 'id')
+  for(let requiredParams of ['total']) {
+    if(!order[requiredParams]) {
+      return response.status(422).json({error: `Expected format: { name: <string> }. You are missing a ${requiredParams} property`});
+    }
+  }
+
+  database('orders').insert({total: order.total}, 'total')
   .then(total => {
-    const id = total[0]
-    response.status(201).json({id: total[0]})
+    response.status(201).json({id: parseInt(total[0])})
   })
   .catch(error => response.status(500).json({ error }))
 }

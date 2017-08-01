@@ -57,6 +57,44 @@ describe('API Routes', () => {
         done();
       });
     });
+
+    it('should not return all items', (done) => {
+      chai.request(server)
+      .get('/api/v1/sadpath')
+      .end((error, response) => {
+        response.should.have.status(404);
+        done();
+      });
+    });
+  });
+
+  describe('GET /api/v1/order', () => {
+    it('should return all orders', (done) => {
+      chai.request(server)
+      .post('/api/v1/order')
+      .send({
+        total: 64
+      })
+      .end((error, response) => {
+        chai.request(server)
+        .get('/api/v1/order')
+        .end((error, response) => {
+          response.should.have.status(200);
+          response.should.be.json;
+          response.should.be.a('object');
+          done();
+        });
+      });
+    });
+
+    it('should not return all orders', (done) => {
+      chai.request(server)
+      .get('/api/v1/sadpath')
+      .end((error, response) => {
+        response.should.have.status(404);
+        done();
+      });
+    });
   });
 
   describe('POST /api/v1/order', () => {
@@ -69,10 +107,21 @@ describe('API Routes', () => {
       .end((error, response) => {
         response.should.have.status(201);
         response.body.should.be.a('object');
-        response.body.should.have.property('total');
-        response.body.total.should.equal('64.00');
+        response.body.should.have.property('id');
+        response.body.id.should.equal(64.00);
         done();
-      })
-    })
-  })
+      });
+    });
+
+  it('should not add an order', (done) => {
+      chai.request(server)
+      .post('/api/v1/order')
+      .send({})
+      .end((error, response) => {
+        response.should.have.status(422);
+        response.body.should.be.a('object');
+        done();
+      });
+    });
+  });
 });

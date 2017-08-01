@@ -49,9 +49,8 @@ const getOrder = () => {
   fetch('/api/v1/order')
   .then(response => response.json())
   .then((order) => {
-    console.log(order)
-    if (inventory.length) {
-      inventory.map(items => appendInventory(items));
+    if (order.length) {
+      order.map(items => appendOrder(items));
     }
   });
 };
@@ -82,8 +81,13 @@ const retrieveLocalStorage = () => {
   }
 }
 
-
-
+const appendOrder = (item) => {
+  $('#order-history').append(`
+    <div>
+    <p>Order Total: ${item.total}</p>
+    <p>Order Date: ${new Date(item.created_at).toLocaleString()}</p>
+    </div>`)
+}
 
 $(document).ready(() => {
   getInventory();
@@ -93,11 +97,11 @@ $(document).ready(() => {
 
 $('#inventory').on('click', '#addToCart', function() {
   const card = $(this).parent().children()
-  const menuEl = $(this).parent().parent().parent().children()[0];
-  const cartMenu = $(menuEl).children()[1];
-  const cart = $(cartMenu).children()[1]
   const title = card[0].innerHTML;
   const price = parseInt(card[3].innerHTML);
+  const menuEl = $(this).parent().parent().parent();
+  const cartMenu = $(menuEl).children()[2];
+  const cart = $(cartMenu).children()[1]
   const totalEl = $(cart).find('#cart-total')[0]
   let value = parseInt($(totalEl).find('#cart-total-value')[0].innerHTML) + price;
   appendItemToCart(title, price);
@@ -107,17 +111,38 @@ $('#inventory').on('click', '#addToCart', function() {
 $('#cart').on('click', '#purchase-btn', function() {
   const totalEl = $(this).parent().find('#cart-total')[0]
   const value = $(totalEl).find('#cart-total-value')[0].innerHTML;
-  addOrder(value)
+  const cartEl = $(this).parent()[0];
+  const item = $(cartEl).find('.cart-item');
+  addOrder(value);
+  item.detach();
 })
 
 $('.order-btn').on('click', function() {
   const orderHistory = $(this).parent().find('#order-history');
-  $(orderHistory).toggleClass('hide').toggle();
+ 
+  if($(orderHistory).is(":visible")) {
+     $(orderHistory).animate({
+      width: "toggle"
+    }, 200)
+   } else {
+    $(orderHistory).animate({
+      width: "toggle"
+    }, 200)
+   }
 });
 
 $('.cart-btn').on('click', function() {
   const cart = $(this).parent().find('#cart');
-  $(cart).toggleClass('hide').toggle();
+
+  if($(cart).is(":visible")) {
+     $(cart).animate({
+      width: "toggle"
+    }, 200)
+   } else {
+    $(cart).animate({
+      width: "toggle"
+    }, 200)
+   }
 });
 
 
