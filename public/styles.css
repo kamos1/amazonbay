@@ -22,6 +22,14 @@ body {
   display: hide;
 }
 
+#order-menu {
+  text-align: center;
+}
+
+#order-history {
+  text-align: center;
+}
+
 #inventory {
   width: 100%;
   display: flex;

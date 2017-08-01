@@ -4,7 +4,7 @@ const appendInventory = (items) => {
       <p class="card-text title">${items.title}</p>
       <p class="card-text description">${items.description}</p>
       <a class="image-link" href="${items.image}"> picture of ${items.title}</a>
-      <p class="card-text title">$${items.price}</p>
+      <p class="card-text title">${items.price}</p>
       <button id="addToCart" class="card-btn">Add to cart</button>
     </div>`)
 }
@@ -85,12 +85,9 @@ const appendOrder = (item) => {
   $('#order-history').append(`
     <div>
     <p>Order Total: ${item.total}</p>
-    <p>Order Date: ${item.created_at}</p>
+    <p>Order Date: ${new Date(item.created_at).toLocaleString()}</p>
     </div>`)
 }
-
-
-
 
 $(document).ready(() => {
   getInventory();
@@ -114,7 +111,10 @@ $('#inventory').on('click', '#addToCart', function() {
 $('#cart').on('click', '#purchase-btn', function() {
   const totalEl = $(this).parent().find('#cart-total')[0]
   const value = $(totalEl).find('#cart-total-value')[0].innerHTML;
-  addOrder(value)
+  const cartEl = $(this).parent()[0];
+  const item = $(cartEl).find('.cart-item');
+  addOrder(value);
+  item.detach();
 })
 
 $('.order-btn').on('click', function() {
