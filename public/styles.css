@@ -39,6 +39,7 @@ body {
 
 .card {
   width: 50%;
+  height: 250px;
   max-height: 30%;
   background: #F7F7FF;
   margin: 0 20px 20px 20px;
