@@ -97,11 +97,11 @@ $(document).ready(() => {
 
 $('#inventory').on('click', '#addToCart', function() {
   const card = $(this).parent().children()
-  const menuEl = $(this).parent().parent().parent().children()[0];
-  const cartMenu = $(menuEl).children()[1];
-  const cart = $(cartMenu).children()[1]
   const title = card[0].innerHTML;
   const price = parseInt(card[3].innerHTML);
+  const menuEl = $(this).parent().parent().parent();
+  const cartMenu = $(menuEl).children()[2];
+  const cart = $(cartMenu).children()[1]
   const totalEl = $(cart).find('#cart-total')[0]
   let value = parseInt($(totalEl).find('#cart-total-value')[0].innerHTML) + price;
   appendItemToCart(title, price);
@@ -119,12 +119,30 @@ $('#cart').on('click', '#purchase-btn', function() {
 
 $('.order-btn').on('click', function() {
   const orderHistory = $(this).parent().find('#order-history');
-  $(orderHistory).toggleClass('hide').toggle();
+ 
+  if($(orderHistory).is(":visible")) {
+     $(orderHistory).animate({
+      width: "toggle"
+    }, 200)
+   } else {
+    $(orderHistory).animate({
+      width: "toggle"
+    }, 200)
+   }
 });
 
 $('.cart-btn').on('click', function() {
   const cart = $(this).parent().find('#cart');
-  $(cart).toggleClass('hide').toggle();
+
+  if($(cart).is(":visible")) {
+     $(cart).animate({
+      width: "toggle"
+    }, 200)
+   } else {
+    $(cart).animate({
+      width: "toggle"
+    }, 200)
+   }
 });
 
 

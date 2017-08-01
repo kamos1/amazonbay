@@ -10,16 +10,12 @@ body {
   text-align: center;
 }
 
-#main {
+#menus {
   display: flex;
 }
 
 #menu {
   width: 20%;
-}
-
-.hide {
-  display: hide;
 }
 
 #order-menu {
@@ -28,19 +24,17 @@ body {
 
 #order-history {
   text-align: center;
+  width: 200px;
 }
 
 #inventory {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 .card {
   width: 50%;
   height: 250px;
-  max-height: 30%;
   background: #F7F7FF;
   margin: 0 20px 20px 20px;
   border-radius: 20px;
@@ -54,7 +48,6 @@ body {
 .card-btn {
   border: none;
   background: #577399;
-  margin: 20px;
   color: #F7F7FF;
 }
 
